@@ -8,17 +8,17 @@ const base = {
   context: SRC,
   resolve: {
     modules: ["node_modules", SRC],
-    extensions: [".js", ".ts", ".json"],
+    extensions: [".js", ".ts", ".tsx", ".json"],
   },
   module: {
     rules: [
       {
-        test: /\.ts(x?)$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: ["babel-loader", "ts-loader"],
       },
       {
-        test: /\.js(x?)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: "babel-loader",
       },
@@ -27,12 +27,14 @@ const base = {
   plugins: [new CompressionPlugin()],
   externals: {
     effector: "effector",
+    react: "react",
+    "react-dom": "react-dom",
   },
 };
 
 const core = {
   ...base,
-  entry: { index: "./index.ts" },
+  entry: { index: "./index.ts", react: "./react/index.ts" },
   output: {
     library: "effector-extensions",
     libraryTarget: "commonjs2",
@@ -41,4 +43,4 @@ const core = {
   },
 };
 
-module.exports = core;
+module.exports = [core];

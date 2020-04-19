@@ -8,7 +8,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "types": ["jest"],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "jsx": "react"
   },
-  "exclude": ["./typings"]
+  "exclude": ["./typings", "./react.d.ts", "./**/*.test.ts"]
 }
